@@ -61,16 +61,17 @@ def compare(user_score, computer_score):
 
 
 def play_game():
-    # 블랙잭 로고를 출력
     """블랙잭 게임을 실행"""
     print(logo)
     user_cards = []
     com_cards = []
+    user_score = 0
+    computer_score = 0
     is_game_over = False  # 게임종료인지 확인하는 변수
     # 유저와 컴 모두 카드를 2장 받는다.
     for i in range(2):
-        user_cards.append(deal_card)
-        com_cards.append(deal_card)
+        user_cards.append(deal_card())
+        com_cards.append(deal_card())
     # 블랙잭? 21초과? 한장 더?
     while not is_game_over:  # 게임오버가 되지 않았으면 계속 진행
         user_score = calculate_score(user_cards)
@@ -82,8 +83,7 @@ def play_game():
             is_game_over = True  # 블랙잭이 나오거나 유저의 점수가 21보다 크면 종료
         else:
             # 카드를 한장 더 받으면 게임을 계속 진행하고 더이상 카드를 받지 않으면 반복문을 종료한다.
-            user_should_deal = input(
-                "카드를 한장 더 받겠습니까?  (y/n) : ")
+            user_should_deal = input("카드를 한장 더 받겠습니까?  (y/n) : ")
             if user_should_deal == "y":
                 user_cards.append(deal_card())  # 카드 한장 더
             else:  # 더이상 카드를 뽑지않고 유저는 종료
